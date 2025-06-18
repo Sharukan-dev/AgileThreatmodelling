@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: write  # ⬅️ notwendig für Commit!
+  contents: write
 
 jobs:
   build:
@@ -19,15 +19,15 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex
+          root_file: latex/main.tex
 
-      - name: Commit compiled PDF
+      - name: Move and commit PDF
         run: |
+          mv main.pdf latex/main.pdf
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add main.pdf
-          git commit -m "Automatisch generiertes PDF" || echo "Keine Änderungen"
+          git add latex/main.pdf
+          git commit -m "PDF aktualisiert" || echo "Keine Änderungen"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
