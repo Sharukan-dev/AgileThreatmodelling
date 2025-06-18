@@ -1,0 +1,25 @@
+name: LaTeX Compile
+
+on:
+  push:
+    branches:
+      - main  # oder dein Haupt-Branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: LaTeX installieren und kompilieren
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+
+      - name: PDF als Artefakt speichern
+        uses: actions/upload-artifact@v3
+        with:
+          name: main-pdf
+          path: main.pdf
