@@ -1,25 +1,31 @@
-name: LaTeX Compile
+name: LaTeX Compile and Commit PDF
 
 on:
   push:
     branches:
-      - '*'  # auf allen Branches ausführen
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository auschecken
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: LaTeX kompilieren
+      - name: Compile LaTeX
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
 
-      - name: PDF als Artefakt speichern
-        uses: actions/upload-artifact@v4
-        with:
-          name: main-pdf
-          path: main.pdf
+      - name: Commit compiled PDF
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add main.pdf
+          git commit -m "Automatisch erstelltes PDF" || echo "Nichts zu committen"
+          git push
+        env:
+          # Required for push to work
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
