@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # ⬅️ notwendig für Commit!
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,8 +27,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git add main.pdf
-          git commit -m "Automatisch erstelltes PDF" || echo "Nichts zu committen"
+          git commit -m "Automatisch generiertes PDF" || echo "Keine Änderungen"
           git push
         env:
-          # Required for push to work
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
