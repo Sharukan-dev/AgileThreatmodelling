@@ -3,7 +3,7 @@ name: LaTeX Compile
 on:
   push:
     branches:
-      - main  # oder dein Haupt-Branch
+      - '*'
 
 jobs:
   build:
