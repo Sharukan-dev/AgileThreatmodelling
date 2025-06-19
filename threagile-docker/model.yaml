@@ -1,0 +1,17 @@
+title: Simple Model
+author: Dein Name
+date: 2025-06-19
+
+technical_assets:
+  webserver:
+    type: web-server
+    usage: business
+    size: small
+    encryption: none
+    internet: yes
+    tags:
+      - web
+
+trust_boundaries: {}
+
+data_assets: {}
