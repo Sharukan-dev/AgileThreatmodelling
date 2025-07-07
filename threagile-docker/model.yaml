@@ -1,0 +1,23 @@
+title: Simple Model
+meta:
+  author:
+    name: Max Mustermann
+    email: max@beispiel.de
+date: 2025-06-19
+
+technical_assets:
+  webserver:
+    type: web-server
+    usage: business
+    size: small
+    encryption: none
+    internet: yes
+    business_criticality: medium
+    tags:
+      - web
+
+trust_boundaries: {}
+
+data_assets: {}
+
+applications: []
