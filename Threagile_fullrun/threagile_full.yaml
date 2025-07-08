@@ -65,7 +65,20 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      WC1-to-S3:
+        title: Zugriff WC1 auf MIS Server
+        target: S3
+        protocol: ssh 
+        authentication: credentials
+        authorization: enduser-identity-propagation
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved:
+          - production-data 
+        vpn: false  
+        ip_filtered: false
+        read_only: false   
   WC2:
     id: WC2
     description: Historian Web Client
@@ -92,7 +105,20 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      WC2-to-S3:
+        title: Zugriff WC2 auf MIS Server
+        target: S3
+        protocol: ssh
+        authentication: credentials
+        authorization: enduser-identity-propagation
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved:
+          - production-data 
+        vpn: false  
+        ip_filtered: false
+        read_only: false
   WC3:
     id: WC3
     description: Data Monitor Web Client
@@ -119,7 +145,20 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      WC3-to-S3:
+        title: Zugriff WC3 auf MIS Server
+        target: S3
+        protocol: ssh
+        authentication: credentials
+        authorization: enduser-identity-propagation
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved:
+          - production-data 
+        vpn: false  
+        ip_filtered: false
+        read_only: false
   C2:
     id: C2
     description: PC Support
@@ -779,3 +818,8 @@ technical_overview:
     
   images:
     - ChemoDemo-ITOT.png: IT/OT Infrastruktur der ChemoDemo AG
+
+  report:
+  diagram_layout:
+    columns: 1  # erzwingt eine Spalte, also untereinander
+    image_width: 800
