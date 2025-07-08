@@ -984,8 +984,3 @@ technical_overview:
     
   images:
     - ChemoDemo-ITOT.png: IT/OT Infrastruktur der ChemoDemo AG
-
-  report:
-  diagram_layout:
-    columns: 1  # erzwingt eine Spalte, also untereinander
-    image_width: 800
