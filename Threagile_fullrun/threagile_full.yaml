@@ -66,16 +66,15 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: 
-      WC1-to-S3:
-        title: Zugriff WC1 auf MIS Server
-        target: S3
-        protocol: ssh 
-        authentication: credentials
-        authorization: enduser-identity-propagation
+      WC1-to-FW3:
+        description: Zugriff WC1 auf Firewall 3
+        target: FW3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
         usage: business
         data_assests_sent: []
-        data_assets_recieved:
-          - production-data 
+        data_assets_recieved: []
         vpn: false  
         ip_filtered: false
         read_only: false   
@@ -106,19 +105,18 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: 
-      WC2-to-S3:
-        title: Zugriff WC2 auf MIS Server
-        target: S3
-        protocol: ssh
-        authentication: credentials
-        authorization: enduser-identity-propagation
+      WC2-to-FW3:
+        description: Zugriff WC2 auf Firewall 3
+        target: FW3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
         usage: business
         data_assests_sent: []
-        data_assets_recieved:
-          - production-data 
+        data_assets_recieved: []
         vpn: false  
         ip_filtered: false
-        read_only: false
+        read_only: false 
   WC3:
     id: WC3
     description: Data Monitor Web Client
@@ -146,24 +144,23 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: 
-      WC3-to-S3:
-        title: Zugriff WC3 auf MIS Server
-        target: S3
-        protocol: ssh
-        authentication: credentials
-        authorization: enduser-identity-propagation
+      WC3-to-FW3:
+        description: Zugriff WC3 auf Firewall 3
+        target: FW3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
         usage: business
         data_assests_sent: []
-        data_assets_recieved:
-          - production-data 
+        data_assets_recieved: []
         vpn: false  
         ip_filtered: false
-        read_only: false
-  C2:
-    id: C2
-    description: PC Support
+        read_only: false 
+  C1:
+    id: C1
+    description: Remote PC Wartung Support
     type: external-entity
-    usage: business
+    usage: devops
     used_as_client_by_human: true
     out_of_scope: false
     size: component
@@ -184,7 +181,57 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      C1-to-FW1:
+        description: Zugriff C1 auf Firewall 1
+        target: FW1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+  C2:
+    id: C2
+    description: PC Support
+    type: external-entity
+    usage: devops
+    used_as_client_by_human: true
+    out_of_scope: false
+    size: component
+    technology: client-system
+    tags:
+    - it
+    internet: true
+    machine: physical
+    encryption: none
+    owner: IT
+    confidentiality: internal
+    integrity: operational
+    availability: operational
+    multi_tenant: false
+    redundant: false
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links: 
+      C2-to-R1:
+        description: Zugriff Client 2 auf Router 1
+        target: R1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: devops
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   R1:
     id: R1
     description: ISDN Router
@@ -195,11 +242,11 @@ technical_assets:
     size: system
     technology: gateway
     tags:
-    - ot
+    - it
     internet: false
     machine: physical
     encryption: none
-    owner: OT
+    owner: IT
     confidentiality: internal
     integrity: operational
     availability: important
@@ -210,7 +257,19 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      R1-to-FW4:
+        description: Zugriff Router 1 auf Firewall 4
+        target: FW4
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: devops
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   FW1:
     id: FW1
     description: Internet Firewall
@@ -219,7 +278,7 @@ technical_assets:
     used_as_client_by_human: false
     out_of_scope: false
     size: system
-    technology: waf
+    technology: gateway
     tags:
     - secure-zone
     internet: true
@@ -236,7 +295,19 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      FW1-to-S0:
+        description: Zugriff Firewall 1 auf DMZ RAS Server 0
+        target: S0
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   FW2:
     id: FW2
     description: External Firewall
@@ -245,7 +316,7 @@ technical_assets:
     used_as_client_by_human: false
     out_of_scope: false
     size: system
-    technology: waf
+    technology: gateway
     tags:
     - secure-zone
     internet: true
@@ -262,7 +333,19 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      FW2-to-FW3:
+        description: Zugriff Firewall 2 auf Firewall 3
+        target: FW3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   FW3:
     id: FW3
     description: IT Firewall
@@ -271,7 +354,7 @@ technical_assets:
     used_as_client_by_human: false
     out_of_scope: false
     size: system
-    technology: waf
+    technology: gateway
     tags:
     - secure-zone
     internet: false
@@ -288,7 +371,55 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      FW3-to-FW4:
+        description: Zugriff Firewall 3 auf Firewall 4
+        target: FW4
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      FW3-to-WC1:
+        description: Zugriff Firewall 3 auf WC1
+        target: WC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      FW3-to-WC2:
+        description: Zugriff Firewall 3 auf WC2
+        target: WC2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
+      FW3-to-WC3:
+        description: Zugriff Firewall 3 auf WC3
+        target: WC3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
   FW4:
     id: FW4
     description: OT Firewall
@@ -297,7 +428,7 @@ technical_assets:
     used_as_client_by_human: false
     out_of_scope: false
     size: system
-    technology: waf
+    technology: gateway
     tags:
     - secure-zone
     - ot
@@ -315,7 +446,31 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      FW4-to-S3:
+        description: Zugriff Firewall 4 auf MIS Server 3
+        target: S3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      FW4-to-FW3:
+        description: Zugriff Firewall 4 auf Firewall 3
+        target: FW3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: devops
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   S0:
     id: S0
     description: RAS Server
@@ -341,7 +496,19 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      S0-to-FW2:
+        description: Zugriff DMZ RAS Server 0 auf Firewall 2
+        target: FW2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
   S1:
     id: S1
     description: Beispielkomponente für OT-TB1
@@ -758,7 +925,6 @@ trust_boundaries:
     - WC1
     - WC2
     - WC3
-    - C2
     trust_boundaries_nested: []
   Operations:
     id: Operations
