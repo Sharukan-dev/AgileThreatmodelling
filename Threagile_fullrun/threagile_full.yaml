@@ -1,5 +1,5 @@
 threagile_version: 1.0.0
-title: ChemoDemo Full IT/OT Infrastructure
+title: ChemoDemo IT OT Infrastructure
 date: '2025-07-08'
 author:
   name: ChemoDemo Security Team
@@ -760,3 +760,22 @@ trust_boundaries:
     - T2
     trust_boundaries_nested: []
 shared_runtimes: {}
+
+technical_overview:
+  description: >
+    Die ChemoDemo AG betreibt eine automatisierte Produktionsumgebung mit einer klaren Trennung zwischen IT- und OT-Bereich,
+    verbunden über abgesicherte Schnittstellen. Im OT-Bereich befinden sich mehrere speicherprogrammierbare Steuerungen (PLCs),
+    die für die Regelung und Steuerung der Produktionsprozesse zuständig sind.
+    Die Konfiguration und Programmierung dieser Steuerungen erfolgt über die Engineering Station (ES1),
+    die als zentrales Administrationssystem für den OT-Kernbereich fungiert. Zur Überwachung der Anlage werden Operator Stations (OS1) eingesetzt,
+    die Prozessdaten visualisieren und Zustände anzeigen. Ein zentraler Jump Server (S4) dient als Zugangspunkt für interne und externe Fernzugriffe
+    auf OT-Komponenten wie ES1 und OS1. Der Zugriff über S4 ist durch mehrstufige Authentifizierung (z. B. VPN und Whitelisting) sowie eine Netzwerksegmentierung abgesichert.
+    Der MIS-Server (S3) stellt Produktionsaufträge bereit und dient als Bindeglied zwischen den Office-Systemen und der Produktionssteuerung.
+    Seine Kommunikation ist auf den Terminalbus (TB1) beschränkt, über den er mit der Produktionsinfrastruktur interagiert.
+    Im IT-Bereich befinden sich mehrere Workstations (WC1–3), Domaincontroller (DC1), ein Antiviren-Update-Server (S2) sowie ein Historian-Server (S6),
+    der Produktionsdaten langfristig archiviert. Remote-Zugriffe auf die Anlage erfolgen auch über externe Clients (C1/C2), z. B. im Rahmen von Wartungseinsätzen.
+    Die gesamte Netzwerkstruktur ist durch ein Zonenkonzept mit Firewalls, Kopplungsservern (S1) und klar definierten Kommunikationswegen abgesichert.
+    Organisatorisch wird die Infrastruktur durch ein integriertes Managementsystem geregelt, das unter anderem Vorgaben zu Change Management, Zugriffskontrolle, Backup-Strategien und Sicherheitsüberwachung macht.
+    
+  images:
+    - ChemoDemo-ITOT.png: IT/OT Infrastruktur der ChemoDemo AG
