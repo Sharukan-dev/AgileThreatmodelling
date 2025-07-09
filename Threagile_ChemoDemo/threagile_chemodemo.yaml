@@ -1,4 +1,4 @@
-# run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_full.yaml   -output /app/work"
+# run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_chemodemo.yaml  -output /app/work"
 
 
 threagile_version: 1.0.0
