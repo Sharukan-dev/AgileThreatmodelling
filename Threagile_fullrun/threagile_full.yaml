@@ -1464,6 +1464,7 @@ trust_boundaries:
     - DC2
     - ES1
     - S1
+    - R2
     trust_boundaries_nested: []
   OT-TB2:
     id: OT-TB2
