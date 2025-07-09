@@ -1,10 +1,8 @@
 # run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_full.yaml   -output /app/work"
 
-$schema: ./schema.json
-
 threagile_version: 1.0.0
 title: ChemoDemo IT OT Infrastructure
-date: '2025-07-08'
+date: '2025-07-10'
 author:
   name: ChemoDemo Security Team
 business_criticality: critical  
