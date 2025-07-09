@@ -1,0 +1,186 @@
+#ausführen mit: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile_secure.yaml -output /app/work
+
+threagile_version: 1.0.0
+title: Secure IT Testmodell
+author:
+  name: test
+business_criticality: important
+tags_available:
+- test
+- secure
+- pii
+data_assets:
+  user-data:
+    id: user-data
+    description: Benutzerdaten mit Authentifizierungsinformationen
+    usage: business
+    tags:
+    - pii
+    origin: users
+    owner: IT
+    quantity: many
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating: Benutzerdaten erfordern Schutz und sind nun abgesichert
+technical_assets:
+  client:
+    id: client
+    description: Externer Client
+    type: external-entity
+    usage: business
+    used_as_client_by_human: true
+    out_of_scope: false
+    size: component
+    technology: client-system
+    tags: []
+    internet: false
+    machine: physical
+    encryption: data-with-enduser-individual-key
+    owner: users
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating:
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed:
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-webapp:
+        target: webapp
+        description: HTTPS-Verbindung mit Authentifizierung
+        protocol: https
+        authentication: two-factor
+        authorization: enduser-identity-propagation
+        tags: []
+        vpn: true
+        ip_filtered: true
+        readonly: false
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received: []
+  webapp:
+    id: webapp
+    description: Gesicherte WebApp in DMZ
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: application
+    technology: web-server
+    tags: []
+    internet: true
+    machine: virtual
+    encryption: data-with-symmetric-shared-key
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating:
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: true
+    data_assets_processed:
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-app:
+        target: app
+        description: Gesicherte Verbindung zum Backend
+        protocol: https
+        authentication: two-factor
+        authorization: technical-user
+        tags: []
+        vpn: true
+        ip_filtered: true
+        readonly: false
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received: []
+  app:
+    id: app
+    description: Gesicherte Backend Applikation
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: service
+    technology: application-server
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: data-with-symmetric-shared-key
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating:
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: true
+    data_assets_processed:
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-database:
+        target: database
+        description: Verschlüsselte Verbindung zur DB
+        protocol: jdbc-encrypted
+        authentication: credentials
+        authorization: technical-user
+        tags: []
+        vpn: true
+        ip_filtered: true
+        readonly: false
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received: []
+  database:
+    id: database
+    description: Gesicherte Benutzerdatenbank
+    type: datastore
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: service
+    technology: database
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: data-with-symmetric-shared-key
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating:
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored:
+    - user-data
+    data_formats_accepted:
+    - json
+    communication_links: {}
+trust_boundaries:
+  dmz:
+    id: dmz
+    description: Demilitarisierte Zone
+    type: network-on-prem
+    tags: []
+    technical_assets_inside:
+    - webapp
+    trust_boundaries_nested: []
+shared_runtimes: {}
