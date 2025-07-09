@@ -1,4 +1,4 @@
-#run with: #run with: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile.yaml -output /app/work
+#run with: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile.yaml -output /app/work
 
 threagile_version: 1.0.0
 title: Insecure IT Testmodell
@@ -51,8 +51,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links:
-      to-webapp:
-        target: webapp
+      to-firewall1:
+        target: firewall1
         description: Klartext-Kommunikation
         protocol: http
         authentication: none
@@ -65,6 +65,93 @@ technical_assets:
         data_assets_sent:
         - user-data
         data_assets_received: []
+
+  firewall1:
+    id: firewall1
+    description: Firewall zwischen Client und WebApp
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: component
+    technology: gateway
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: none
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating: Schutz vor unautorisierten Zugriffen vom Client zur WebApp
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed: 
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-webapp:
+        target: webapp
+        description: Übergabe an WebApp
+        protocol: http
+        authentication: none
+        authorization: none
+        tags: []
+        vpn: false
+        ip_filtered: false
+        readonly: false
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received:
+        - user-data
+
+  firewall2:
+    id: firewall2
+    description: Firewall zwischen WebApp und App
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: component
+    technology: gateway
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: none
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating: Schutz vor direkten Zugriffen von WebApp auf das interne Backend
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed: 
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-app:
+        target: app
+        description: Übergabe an Backend-App
+        protocol: http
+        authentication: none
+        authorization: none
+        tags: []
+        vpn: false
+        ip_filtered: false
+        readonly: false
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received:
+        - user-data
+
   webapp:
     id: webapp
     description: Unsichere WebApp in DMZ
@@ -92,9 +179,9 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links:
-      to-app:
-        target: app
-        description: Weiterleitung an Backend
+      to-firewall2:
+        target: firewall2
+        description: Weiterleitung an firewall2
         protocol: http
         authentication: none
         authorization: none
@@ -105,7 +192,8 @@ technical_assets:
         usage: business
         data_assets_sent:
         - user-data
-        data_assets_received: []
+        data_assets_received:
+        - user-data
   app:
     id: app
     description: Backend Applikation
@@ -146,7 +234,8 @@ technical_assets:
         usage: business
         data_assets_sent:
         - user-data
-        data_assets_received: []
+        data_assets_received:
+        - user-data
   database:
     id: database
     description: Benutzerdatenbank

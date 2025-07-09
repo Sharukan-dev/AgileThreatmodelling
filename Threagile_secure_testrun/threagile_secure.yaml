@@ -51,12 +51,12 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links:
-      to-webapp:
-        target: webapp
+      to-firewall1:
+        target: firewall1
         description: HTTPS-Verbindung mit Authentifizierung
         protocol: https
         authentication: two-factor
-        authorization: enduser-identity-propagation
+        authorization: technical-user
         tags: []
         vpn: true
         ip_filtered: true
@@ -65,6 +65,93 @@ technical_assets:
         data_assets_sent:
         - user-data
         data_assets_received: []
+  firewall1:
+    id: firewall1
+    description: Firewall zwischen Client und WebApp
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: component
+    technology: gateway
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: data-with-enduser-individual-key
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating: Schutz vor unautorisierten Zugriffen vom Client zur WebApp
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed:
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-webapp:
+        target: webapp
+        description: Übergabe an WebApp
+        protocol: ssh-tunnel
+        authentication: token
+        authorization: enduser-identity-propagation
+        tags: []
+        vpn: true
+        ip_filtered: true
+        readonly: true
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received:
+        - user-data
+
+  firewall2:
+    id: firewall2
+    description: Firewall zwischen WebApp und App
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: component
+    technology: gateway
+    tags: []
+    internet: false
+    machine: virtual
+    encryption: data-with-enduser-individual-key
+    owner: IT
+    confidentiality: confidential
+    integrity: important
+    availability: important
+    justification_cia_rating: Schutz vor direkten Zugriffen von WebApp auf das interne Backend
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed:
+    - user-data
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links:
+      to-app:
+        target: app
+        description: Übergabe an Backend-App
+        protocol: ssh-tunnel
+        authentication: token
+        authorization: enduser-identity-propagation
+        tags: []
+        vpn: true
+        ip_filtered: true
+        readonly: true
+        usage: business
+        data_assets_sent:
+        - user-data
+        data_assets_received:
+        - user-data
+
+
   webapp:
     id: webapp
     description: Gesicherte WebApp in DMZ
@@ -92,12 +179,12 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links:
-      to-app:
-        target: app
-        description: Gesicherte Verbindung zum Backend
+      to-firewall2:
+        target: firewall2
+        description: Verbindungs zur firewall2
         protocol: ssh-tunnel
         authentication: client-certificate
-        authorization: technical-user
+        authorization: enduser-identity-propagation
         tags: []
         vpn: true
         ip_filtered: true
@@ -142,11 +229,12 @@ technical_assets:
         tags: []
         vpn: true
         ip_filtered: true
-        readonly: false
+        readonly: true
         usage: business
         data_assets_sent:
         - user-data
-        data_assets_received: []
+        data_assets_received:
+        - user-data
   database:
     id: database
     description: Gesicherte Benutzerdatenbank
