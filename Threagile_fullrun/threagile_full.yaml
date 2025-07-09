@@ -45,6 +45,35 @@ data_assets:
 
 
 technical_assets:
+
+  NTP:
+    id: NTP
+    description: NTP-Server
+    type: process
+    usage: business
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: service
+    technology: application-server
+    tags:
+    - secure-zone
+    internet: true
+    machine: virtual
+    encryption: transparent
+    owner: IT
+    confidentiality: restricted
+    integrity: important
+    availability: important
+    multi_tenant: false
+    redundant: true
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted:
+    - json
+    communication_links: {}
+
+
   WC1:
     id: WC1
     description: Operator Web Client
@@ -609,6 +638,18 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      S1-to-R2-NTP:
+        description: Server 1 synchronisiert sich über Domain Controller 2 (NTP)
+        target: R2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
 
     
   S2:
@@ -636,7 +677,19 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      S2-to-DC1:
+        description: Server 2 synchronisiert sich über Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
 
 
   DC1:
@@ -665,8 +718,20 @@ technical_assets:
     - erp-data
     data_formats_accepted:
     - json
-    communication_links: {}
-
+    communication_links: 
+      DC1-to-NTP:
+        description: Domain Controller 1 synchronisiert sich mit NTP-Server (NTP)
+        target: NTP
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
+     
 
   S3:
     id: S3
@@ -707,6 +772,18 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      S3-to-DC1:
+        description: Server 3 synchronisiert sich über Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
 
 
   S4:
@@ -807,6 +884,18 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      S4-to-DC1-NTP:
+        description: Server 4 synchronisiert sich über Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
 
 
   S5:
@@ -834,7 +923,20 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      S5-to-DC1:
+        description: Server 5 synchronisiert sich über Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
 
 
   S6:
@@ -863,7 +965,20 @@ technical_assets:
     - production-data
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      S6-to-DC1:
+        description: Server 6 synchronisiert sich über Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
 
 
   OS1:
@@ -934,7 +1049,19 @@ technical_assets:
     - production-data
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      DC2-to-DC1:
+        description: Domain Controller 2 synchronisiert sich mit Domain Controller 1 (NTP)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
 
 
   ES1:
@@ -1042,6 +1169,18 @@ technical_assets:
       R2-to-OS1:
         description: Zugriff Router 2 auf Operator Station 1 (MIS Verbindung) 
         target: OS1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      R2-to-DC2-NTP:
+        description: Server 1 synchronisiert sich über Domain Controller 2 (NTP)
+        target: DC2
         protocol: unknown-protocol
         authentication: none
         authorization: none
@@ -1215,6 +1354,7 @@ technical_assets:
     communication_links: {}
     
 
+
   
 trust_boundaries:
   DMZ:
@@ -1238,6 +1378,7 @@ trust_boundaries:
     - WC1
     - WC2
     - WC3
+    - NTP
     trust_boundaries_nested: []
   Operations:
     id: Operations
@@ -1279,21 +1420,22 @@ trust_boundaries:
     trust_boundaries_nested: []
 shared_runtimes: {}
 
+business_overview: 
+  description: >
+    Die ChemoDemo AG ist ein mittelständisches Unternehmen der chemischen Industrie mit einem hohen Automatisierungsgrad in der Produktion.
+    Die Herstellung erfolgt in mehreren Prozessschritten, gesteuert über eine OT-Infrastruktur mit direkter Anbindung an zentrale IT-Systeme.
+    Der unterbrechungsfreie Betrieb der Produktionsanlagen ist geschäftskritisch, da Lieferverpflichtungen, Qualitätssicherung und regulatorische Vorgaben stark von der Verfügbarkeit und Integrität der Systeme abhängen.
+    Neben der Produktion unterstützt die IT auch kaufmännische Prozesse wie ERP, Reporting und Wartungsplanung.
+
+
 technical_overview:
   description: >
-    Die ChemoDemo AG betreibt eine automatisierte Produktionsumgebung mit einer klaren Trennung zwischen IT- und OT-Bereich,
-    verbunden über abgesicherte Schnittstellen. Im OT-Bereich befinden sich mehrere speicherprogrammierbare Steuerungen (PLCs),
-    die für die Regelung und Steuerung der Produktionsprozesse zuständig sind.
-    Die Konfiguration und Programmierung dieser Steuerungen erfolgt über die Engineering Station (ES1),
-    die als zentrales Administrationssystem für den OT-Kernbereich fungiert. Zur Überwachung der Anlage werden Operator Stations (OS1) eingesetzt,
-    die Prozessdaten visualisieren und Zustände anzeigen. Ein zentraler Jump Server (S4) dient als Zugangspunkt für interne und externe Fernzugriffe
-    auf OT-Komponenten wie ES1 und OS1. Der Zugriff über S4 ist durch mehrstufige Authentifizierung (z. B. VPN und Whitelisting) sowie eine Netzwerksegmentierung abgesichert.
-    Der MIS-Server (S3) stellt Produktionsaufträge bereit und dient als Bindeglied zwischen den Office-Systemen und der Produktionssteuerung.
-    Seine Kommunikation ist auf den Terminalbus (TB1) beschränkt, über den er mit der Produktionsinfrastruktur interagiert.
-    Im IT-Bereich befinden sich mehrere Workstations (WC1–3), Domaincontroller (DC1), ein Antiviren-Update-Server (S2) sowie ein Historian-Server (S6),
-    der Produktionsdaten langfristig archiviert. Remote-Zugriffe auf die Anlage erfolgen auch über externe Clients (C1/C2), z. B. im Rahmen von Wartungseinsätzen.
-    Die gesamte Netzwerkstruktur ist durch ein Zonenkonzept mit Firewalls, Kopplungsservern (S1) und klar definierten Kommunikationswegen abgesichert.
-    Organisatorisch wird die Infrastruktur durch ein integriertes Managementsystem geregelt, das unter anderem Vorgaben zu Change Management, Zugriffskontrolle, Backup-Strategien und Sicherheitsüberwachung macht.
+    Die technische Infrastruktur der ChemoDemo AG ist segmentiert in IT- und OT-Bereiche, die über mehrere Firewalls und ein Zonenkonzept verbunden sind.
+    Im OT-Bereich steuern speicherprogrammierbare Steuerungen (PLCs) die Produktionsanlagen, unterstützt durch Engineering- und Operator-Stations.
+    Zentrale Schnittstellen wie der MIS-Server und ein Jump Server ermöglichen kontrollierten Zugriff zwischen IT- und OT-Komponenten.
+    Die IT-Infrastruktur besteht aus Clients, Servern (z. B. ERP, Historian, Domaincontroller) sowie Wartungssystemen.
+    Alle Zugriffe erfolgen über klar definierte Kommunikationspfade mit Authentifizierung, Netzwerksegmentierung und Monitoring.
+
     
   images:
     - ChemoDemo-ITOT.png: IT/OT Infrastruktur der ChemoDemo AG
