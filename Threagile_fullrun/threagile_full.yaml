@@ -495,7 +495,7 @@ technical_assets:
       FW4-to-S4:
         description: Zugriff Firewall 4 auf Server 4 (MIS Verbindung - Remote Access)
         target: S4
-        protocol: ssh
+        protocol: unknown-protocol
         authentication: credentials
         authorization: technical-user
         usage: business
@@ -507,7 +507,7 @@ technical_assets:
       FW4-to-R2:
         description: Zugriff Firewall 4 auf Router 2 (Remote Acess)
         target: R2
-        protocol: ssh
+        protocol: unknown-protocol
         authentication: credentials
         authorization: technical-user
         usage: business
@@ -710,7 +710,67 @@ technical_assets:
       S4-to-FW4:
         description: Zugriff Server 4 auf Firewall 4 (Remote Access)
         target: FW4
-        protocol: ssh
+        protocol: unknown-protocol
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      S4-to-DC1:
+        description: Zugriff Server 4 auf Domain Controller DC1 (Jump Server zu Komponenten im Operations Netzwerk)
+        target: DC1
+        protocol: unknown-protocol
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      S4-to-S2:
+        description: Zugriff Server 4 auf Server 2 (Jump Server zu Komponenten im Operations Netzwerk)
+        target: S2
+        protocol: unknown-protocol
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      S4-to-S3:
+        description: Zugriff Server 4 auf Server 3 (Jump Server zu Komponenten im Operations Netzwerk)
+        target: S3
+        protocol: unknown-protocol
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      S4-to-S5:
+        description: Zugriff Server 4 auf Server 5 (Jump Server zu Komponenten im Operations Netzwerk)
+        target: S5
+        protocol: unknown-protocol
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      S4-to-S6:
+        description: Zugriff Server 4 auf Server 2 (Jump Server zu Komponenten im Operations Netzwerk)
+        target: S6
+        protocol: unknown-protocol
         authentication: credentials
         authorization: technical-user
         usage: business
@@ -905,7 +965,7 @@ technical_assets:
       R2-to-ES1:
         description: Zugriff Router 2 auf Engineering Station 1 (Remote Access)
         target: ES1
-        protocol: ssh
+        protocol: unknown-protocol
         authentication: credentials
         authorization: technical-user
         usage: business
