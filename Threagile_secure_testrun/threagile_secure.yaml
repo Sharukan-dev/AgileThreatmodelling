@@ -1,4 +1,4 @@
-#ausführen mit: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile_secure.yaml -output /app/work
+#run with: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile_secure.yaml -output /app/work
 
 threagile_version: 1.0.0
 title: Secure IT Testmodell
@@ -95,8 +95,8 @@ technical_assets:
       to-app:
         target: app
         description: Gesicherte Verbindung zum Backend
-        protocol: https
-        authentication: two-factor
+        protocol: ssh-tunnel
+        authentication: client-certificate
         authorization: technical-user
         tags: []
         vpn: true
@@ -183,4 +183,15 @@ trust_boundaries:
     technical_assets_inside:
     - webapp
     trust_boundaries_nested: []
+  database:
+    id: database
+    description: Netzwerksegmentierung
+    type: network-cloud-provider
+    tags: []
+    technical_assets_inside:
+    - app
+    - database
+    trust_boundaries_nested: []
+
+  
 shared_runtimes: {}

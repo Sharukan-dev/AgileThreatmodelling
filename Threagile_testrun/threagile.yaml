@@ -1,3 +1,5 @@
+#run with: #run with: docker run --rm -it -v "${PWD}:/app/work" threagile/threagile -model /app/work/threagile.yaml -output /app/work
+
 threagile_version: 1.0.0
 title: Insecure IT Testmodell
 author:
