@@ -1,5 +1,6 @@
 # run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_full.yaml   -output /app/work"
 
+
 threagile_version: 1.0.0
 title: ChemoDemo IT OT Infrastructure
 date: '2025-07-10'
@@ -547,6 +548,18 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      FW4-to-R2-Admin:
+        description: Domain Controller 1 administriert die Windowssysteme OS1, ES1 und S1
+        target: R2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
 
 
   S0:
@@ -720,6 +733,18 @@ technical_assets:
       DC1-to-NTP:
         description: Domain Controller 1 synchronisiert sich mit NTP-Server (NTP)
         target: NTP
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
+      DC1-to-FW4:
+        description: Domain Controller 1 administriert die Windowssysteme OS1, ES1 und S1
+        target: FW4
         protocol: unknown-protocol
         authentication: none
         authorization: none
@@ -1188,6 +1213,42 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      R2-to-OS1-Admin:
+        description: Domain Controller 1 administriert die Windowssysteme OS1, ES1 und S1
+        target: OS1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
+      R2-to-ES1-Admin:
+        description: Domain Controller 1 administriert die Windowssysteme OS1, ES1 und S1
+        target: ES1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
+      R2-to-S1-Admin:
+        description: Domain Controller 1 administriert die Windowssysteme OS1, ES1 und S1
+        target: S1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: none
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false
 
 
   R3:
