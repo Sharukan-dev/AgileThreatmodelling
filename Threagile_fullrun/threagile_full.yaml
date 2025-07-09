@@ -38,6 +38,8 @@ data_assets:
     integrity: important
     availability: important
     justification_cia_rating: Supports enterprise operations
+
+
 technical_assets:
   WC1:
     id: WC1
@@ -67,17 +69,19 @@ technical_assets:
     - json
     communication_links: 
       WC1-to-FW3:
-        description: Zugriff WC1 auf Firewall 3
+        description: Zugriff WC1 auf Firewall 3 (MIS Verbindung - Remote Access)
         target: FW3
-        protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
         vpn: false  
         ip_filtered: false
         read_only: false   
+
+
   WC2:
     id: WC2
     description: Historian Web Client
@@ -106,17 +110,19 @@ technical_assets:
     - json
     communication_links: 
       WC2-to-FW3:
-        description: Zugriff WC2 auf Firewall 3
+        description: Zugriff WC2 auf Firewall 3 (MIS Verbindung - Remote Access)
         target: FW3
-        protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   WC3:
     id: WC3
     description: Data Monitor Web Client
@@ -145,17 +151,19 @@ technical_assets:
     - json
     communication_links: 
       WC3-to-FW3:
-        description: Zugriff WC3 auf Firewall 3
+        description: Zugriff WC3 auf Firewall 3 (MIS Verbindung - Remote Access)
         target: FW3
-        protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   C1:
     id: C1
     description: Remote PC Wartung Support
@@ -194,6 +202,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   C2:
     id: C2
     description: PC Support
@@ -232,6 +242,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   R1:
     id: R1
     description: ISDN Router
@@ -270,6 +282,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   FW1:
     id: FW1
     description: Internet Firewall
@@ -308,6 +322,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+        
   FW2:
     id: FW2
     description: External Firewall
@@ -346,6 +362,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   FW3:
     id: FW3
     description: IT Firewall
@@ -373,11 +391,11 @@ technical_assets:
     - json
     communication_links: 
       FW3-to-FW4:
-        description: Zugriff Firewall 3 auf Firewall 4
+        description: Zugriff Firewall 3 auf Firewall 4 (MIS Verbindung - Remote Access)
         target: FW4
-        protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -420,6 +438,9 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false
+      
+
+
   FW4:
     id: FW4
     description: OT Firewall
@@ -448,11 +469,11 @@ technical_assets:
     - json
     communication_links: 
       FW4-to-S3:
-        description: Zugriff Firewall 4 auf MIS Server 3
+        description: Zugriff Firewall 4 auf MIS Server 3 (MIS Verbindung - Remote Access)
         target: S3
-        protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -471,6 +492,32 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+      FW4-to-S4:
+        description: Zugriff Firewall 4 auf Server 4 (MIS Verbindung - Remote Access)
+        target: S4
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      FW4-to-R2:
+        description: Zugriff Firewall 4 auf Router 2 (Remote Acess)
+        target: R2
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
   S0:
     id: S0
     description: RAS Server
@@ -509,6 +556,8 @@ technical_assets:
         vpn: false  
         ip_filtered: false
         read_only: false 
+
+
   S1:
     id: S1
     description: Beispielkomponente für OT-TB1
@@ -531,7 +580,21 @@ technical_assets:
     data_assets_processed: []
     data_assets_stored: []
     data_formats_accepted: []
-    communication_links: {}
+    communication_links: 
+      S1-to-R3:
+        description: Zugriff Server 1 auf Router 3 (Remote Access)
+        target: R3
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+    
   S2:
     id: S2
     description: Virus Scan Server
@@ -558,6 +621,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   DC1:
     id: DC1
     description: Domain Controller
@@ -585,6 +650,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   S3:
     id: S3
     description: Manufacturing Information System
@@ -612,6 +679,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   S4:
     id: S4
     description: Jump Server
@@ -637,7 +706,21 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      S4-to-FW4:
+        description: Zugriff Server 4 auf Firewall 4 (Remote Access)
+        target: FW4
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
   S5:
     id: S5
     description: WSUS Server
@@ -664,6 +747,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   S6:
     id: S6
     description: Historian Database
@@ -691,6 +776,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   OS1:
     id: OS1
     description: Operator Station
@@ -718,6 +805,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+    
   DC2:
     id: DC2
     description: Domain Controller OT
@@ -745,6 +834,8 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+
+
   ES1:
     id: ES1
     description: Engineering Station
@@ -770,7 +861,21 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      ES1-to-R2:
+        description: Zugriff Engineering Station 1 auf Router 2 (Remote Access)
+        target: R2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
   R2:
     id: R2
     description: OT Network Router
@@ -796,7 +901,33 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      R2-to-ES1:
+        description: Zugriff Router 2 auf Engineering Station 1 (Remote Access)
+        target: ES1
+        protocol: ssh
+        authentication: credentials
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      R2-to-S1:
+        description: Zugriff Router 2 auf Server 1 (Remote Access)
+        target: S1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
   R3:
     id: R3
     description: Anlagenbus Router
@@ -822,7 +953,21 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
+    communication_links: 
+      R3-to-R4:
+        description: Zugriff Router 3 auf Router 4 (Remote Access)
+        target: R4
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
   R4:
     id: R4
     description: Anlagenbus Router
@@ -848,9 +993,35 @@ technical_assets:
     data_assets_stored: []
     data_formats_accepted:
     - json
-    communication_links: {}
-  T1:
-    id: T1
+    communication_links: 
+      R4-to-TI1:
+        description: Zugriff Router 4 auf Controller TI1  (Remote Access)
+        target: TI1
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+      R4-to-TI2:
+        description: Zugriff Router 4 auf Controller TI2  (Remote Access)
+        target: TI2
+        protocol: unknown-protocol
+        authentication: none
+        authorization: technical-user
+        usage: business
+        data_assests_sent: []
+        data_assets_recieved: []
+        vpn: false  
+        ip_filtered: false
+        read_only: false 
+
+
+  TI1:
+    id: TI1
     description: Controller with I/O
     type: external-entity
     usage: business
@@ -876,8 +1047,10 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
-  T2:
-    id: T2
+
+
+  TI2:
+    id: TI2
     description: Controller with I/O
     type: external-entity
     usage: business
@@ -903,6 +1076,9 @@ technical_assets:
     data_formats_accepted:
     - json
     communication_links: {}
+    
+
+  
 trust_boundaries:
   DMZ:
     id: DMZ
@@ -961,8 +1137,8 @@ trust_boundaries:
     technical_assets_inside:
     - R3
     - R4
-    - T1
-    - T2
+    - TI1
+    - TI2
     trust_boundaries_nested: []
 shared_runtimes: {}
 
