@@ -1,13 +1,11 @@
 # run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_full.yaml   -output /app/work"
 
-$schema: ./schema.json
-
 threagile_version: 1.0.0
 title: ChemoDemo IT OT Infrastructure
 date: '2025-07-08'
 author:
   name: ChemoDemo Security Team
-business_criticality: critical  
+business_criticality: critical
 tags_available:
 - pii
 - production
@@ -1297,4 +1295,3 @@ technical_overview:
     
   images:
     - ChemoDemo-ITOT.png: IT/OT Infrastruktur der ChemoDemo AG
-    
