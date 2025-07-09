@@ -1,3 +1,5 @@
+# run threagile: "docker run --rm -it   -v "${PWD}:/app/work"   threagile/threagile   -model /app/work/threagile_full.yaml   -output /app/work"
+
 threagile_version: 1.0.0
 title: ChemoDemo IT OT Infrastructure
 date: '2025-07-08'
@@ -194,8 +196,8 @@ technical_assets:
         description: Zugriff C1 auf Firewall 1
         target: FW1
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -274,8 +276,8 @@ technical_assets:
         description: Zugriff Router 1 auf Firewall 4
         target: FW4
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: devops
         data_assests_sent: []
         data_assets_recieved: []
@@ -354,8 +356,8 @@ technical_assets:
         description: Zugriff Firewall 2 auf Firewall 3
         target: FW3
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -406,8 +408,8 @@ technical_assets:
         description: Zugriff Firewall 3 auf WC1
         target: WC1
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -418,8 +420,8 @@ technical_assets:
         description: Zugriff Firewall 3 auf WC2
         target: WC2
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -430,8 +432,8 @@ technical_assets:
         description: Zugriff Firewall 3 auf WC3
         target: WC3
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -484,8 +486,8 @@ technical_assets:
         description: Zugriff Firewall 4 auf Firewall 3
         target: FW3
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: devops
         data_assests_sent: []
         data_assets_recieved: []
@@ -548,8 +550,8 @@ technical_assets:
         description: Zugriff DMZ RAS Server 0 auf Firewall 2
         target: FW2
         protocol: unknown-protocol
-        authentication: none
-        authorization: none
+        authentication: credentials
+        authorization: technical-user
         usage: business
         data_assests_sent: []
         data_assets_recieved: []
@@ -861,7 +863,8 @@ technical_assets:
     custom_developed_parts: false
     data_assets_processed:
     - production-data
-    data_assets_stored: []
+    data_assets_stored:
+    - production-data
     data_formats_accepted:
     - json
     communication_links: {}
