@@ -2,11 +2,14 @@
   "yaml.schemas": {
     "./Threagile_testrun/schema.json": [
       "Threagile_testrun/threagile.yaml",
-      "Threagile_fullrun/threagile_full.yaml"
+      "Threagile_fullrun/threagile_full.yaml",
+      "Threagile_secure_testrun/threagile_secure.yaml"
     ],
     "file:///c%3A/threagile-test/Threagile_testrun/schema.json": [
       "file:///c%3A/threagile-test/Threagile_testrun/threagile.yaml",
-      "file:///c%3A/threagile-test/Threagile_fullrun/threagile_full.yaml"
+      "file:///c%3A/threagile-test/Threagile_fullrun/threagile_full.yaml",
+      "file:///c%3A/threagile-test/Threagile_secure_testrun/threagile_secure.yaml",
+      "file:///c%3A/threagile-test/threagile_secure_testrun/threagile_secure.yaml"
     ]
   }
 }
