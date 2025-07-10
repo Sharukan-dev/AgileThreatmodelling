@@ -1416,6 +1416,17 @@ technical_assets:
 
   
 trust_boundaries:
+  OT-Network:
+    id: OT-Network
+    description:
+    type: network-policy-namespace-isolation
+    tags:
+    - ot
+    technical_assets_inside:
+    - R2
+    trust_boundaries_nested: 
+    - OT-TB1
+    - OT-TB2
   DMZ:
     id: DMZ
     description: Demilitarized Zone
@@ -1464,7 +1475,6 @@ trust_boundaries:
     - DC2
     - ES1
     - S1
-    - R2
     trust_boundaries_nested: []
   OT-TB2:
     id: OT-TB2
