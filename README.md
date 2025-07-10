@@ -5,8 +5,7 @@ Wahlpflichtmodul
 Mirand Gashi:
 Amin Bayoud:
 
---->.vscode                        		
-#Dafür da den JSON schema auswählen zu können in vscode
+--->.vscode                        	    #Dafür da den JSON schema auswählen zu können in vscode
 
     -settings.json 
     
