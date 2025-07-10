@@ -2,7 +2,7 @@
   "yaml.schemas": {
     "./schema.json": [
       "Threagile_insecure_testrun/threagile_insecure_testrun.yaml",
-      "Threagile_fullrun/threagile_full.yaml",
+      "Threagile_fullrun/threagile_chemodemo.yaml",
       "Threagile_secure_testrun/threagile_secure_testrun.yaml"
     ],
     "file:///c%3A/threagile-test/Threagile_testrun/schema.json": [
@@ -13,7 +13,9 @@
     "file:///c%3A/threagile-test/schema.json": [
       "file:///c%3A/threagile-test/Threagile_insecure_testrun/threagile_insecure.yaml",
       "file:///c%3A/threagile-test/threagile_secure_testrun/threagile_secure.yaml",
-      "file:///c%3A/threagile-test/Threagile_fullrun/threagile_chemodemo.yaml"
+      "file:///c%3A/threagile-test/Threagile_fullrun/threagile_chemodemo.yaml",
+      "file:///c%3A/threagile-test/Threagile_ChemoDemo/threagile_chemodemo.yaml",
+      "file:///c%3A/threagile-test/Threagile_incesure_testrun/threagile.yaml"
     ]
   }
 }
