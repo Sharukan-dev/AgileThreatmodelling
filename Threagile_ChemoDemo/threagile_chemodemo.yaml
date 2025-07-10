@@ -1423,7 +1423,7 @@ trust_boundaries:
     tags:
     - ot
     technical_assets_inside:
-    - R2
+    - S1
     trust_boundaries_nested: 
     - OT-TB1
     - OT-TB2
@@ -1474,7 +1474,7 @@ trust_boundaries:
     - OS1
     - DC2
     - ES1
-    - S1
+    - R2
     trust_boundaries_nested: []
   OT-TB2:
     id: OT-TB2
