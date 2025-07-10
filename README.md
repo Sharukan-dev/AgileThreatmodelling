@@ -9,7 +9,9 @@ Amin Bayoud:
     -settings.json 
     
 --->Threagile_ChemoDemo              #ChemoDemo IT/OT Konzept integration
+
     -output...
+    
     -threagile_chemodemo.yaml
     
 --->Threagile_insecure_testrun       #testrun -> insecure
