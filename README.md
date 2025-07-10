@@ -2,8 +2,8 @@
 Wahlpflichtmodul
 
 
-Mirand Gashi:
-Amin Bayoud:
+Mirand Gashi
+Amin Bayoud
 
 --->.vscode                        	    #Dafür da den JSON schema auswählen zu können in vscode
 
